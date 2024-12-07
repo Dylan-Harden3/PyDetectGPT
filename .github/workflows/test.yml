@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  lint-test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,6 +29,18 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r dev-requirements.txt
+
+    - name: Ruff Linter
+      run: |
+       ruff check .
+
+    - name: Black Formatter
+      run: |
+       black --check .
+
+    - name: Pydocstyle
+      run: |
+       pydocstyle --convention google .
 
     - name: Run Tests
       run: |
