@@ -1,3 +1,1 @@
-"""
-PyDetectGPT: A Python package for detecting AI-generated text.
-"""
+"""On device LLM-Generated text detection in Pytorch."""

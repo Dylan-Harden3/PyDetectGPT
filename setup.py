@@ -1,0 +1,1 @@
+"""PyDetectGPT Metadata."""
