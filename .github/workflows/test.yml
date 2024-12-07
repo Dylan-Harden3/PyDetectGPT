@@ -40,7 +40,7 @@ jobs:
 
     - name: Pydocstyle
       run: |
-       pydocstyle .
+       pydocstyle --convention google .
 
     - name: Run Tests
       run: |
