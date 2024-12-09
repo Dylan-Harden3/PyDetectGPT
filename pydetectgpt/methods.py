@@ -1,3 +1,5 @@
+"""Detection functions"""
+
 import torch
 import torch.nn.functional as F
 from .utils import validate_tensor_shapes
