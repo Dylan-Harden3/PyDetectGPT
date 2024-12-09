@@ -1,4 +1,4 @@
-"""Detection functions"""
+"""Detection functions."""
 
 import torch
 import torch.nn.functional as F
