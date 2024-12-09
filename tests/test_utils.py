@@ -31,12 +31,12 @@ def test_log_likelihood():
     logits = torch.tensor([[[0.2, 0.3, 0.4]]])
     labels = torch.tensor([[1]])
 
-    assert (log_likelihood(labels, logits) - -1.1019) < 1e-5
+    assert abs(log_likelihood(labels, logits) - -1.1019428) < 1e-5
 
     logits = torch.tensor([[[2.3, 1.1, 0.5], [0.8, 2.5, 1.1], [1.5, 2.1, 0.2]]])
     labels = torch.tensor([[0, 1, 2]])
 
-    assert (log_likelihood(labels, logits) - 0.0202326) < 1e-5
+    assert abs(log_likelihood(labels, logits) - -1.05657327) < 1e-5
 
 
 def test_log_rank():
@@ -67,9 +67,9 @@ def test_log_rank():
     logits = torch.tensor([[[0.2, 0.3, 0.4]]])
     labels = torch.tensor([[1]])
 
-    assert (log_rank(labels, logits) - -0.693147) < 1e-5
+    assert abs(log_rank(labels, logits) - -0.693147) < 1e-5
 
     logits = torch.tensor([[[2.3, 1.1, 0.5], [0.8, 2.5, 1.1], [1.5, 2.1, 0.2]]])
     labels = torch.tensor([[0, 1, 2]])
 
-    assert (log_rank(labels, logits) - -0.3662) < 1e-5
+    assert abs(log_rank(labels, logits) - -0.3662) < 1e-5
