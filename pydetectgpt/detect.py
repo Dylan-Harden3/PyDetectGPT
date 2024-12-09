@@ -1,7 +1,8 @@
 """Implementations of detection algorithms."""
 
 from typing import Literal
-from .utils import load_model, log_likelihood, log_rank
+from .utils import load_model
+from .methods import log_likelihood, log_rank
 import torch
 
 DETECTION_FUNCS = {"loglikelihood": log_likelihood, "logrank": log_rank}
