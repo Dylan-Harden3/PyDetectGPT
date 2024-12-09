@@ -51,3 +51,24 @@ def log_rank(labels: torch.Tensor, logits: torch.Tensor) -> float:
     log_ranks = torch.log(ranks.float() + 1)
 
     return -log_ranks.mean().item()
+
+
+def likelihood_logrank_ratio(labels: torch.Tensor, logits: torch.Tensor) -> float:
+    """Compute the Likelihood Logrank Ratio (LRR) from DetectLLM paper.
+
+    Args:
+        labels (torch.Tensor): Ground truth labels of shape: (1, sequence_length).
+        logits (torch.Tensor): Logits of shape: (1, sequence_length, vocab_size).
+
+    Returns:
+        float: The LRR Ratio.
+
+    Raises:
+        ValueError: If the shapes of `labels` and `logits` are incompatible or batch size is > 1.
+    """
+    validate_tensor_shapes(labels, logits)
+
+    _log_likelihood = log_likelihood(labels, logits)
+    _log_rank = log_rank(labels, logits)
+
+    return _log_likelihood / _log_rank
