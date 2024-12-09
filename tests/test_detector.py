@@ -53,3 +53,14 @@ def test_detect_ai_text_detectllm():
     assert detect_ai_text(AI_TEXT, method="detectllm", threshold=99999.9) == 0
 
     assert detect_ai_text(HUMAN_TEXT, method="detectllm", threshold=-99999.9) == 1
+
+
+def test_detect_ai_text_fastdetectgpt():
+
+    assert detect_ai_text(AI_TEXT, method="fastdetectgpt") == 1
+
+    assert detect_ai_text(HUMAN_TEXT, method="fastdetectgpt") == 0
+
+    assert detect_ai_text(AI_TEXT, method="fastdetectgpt", threshold=99999.9) == 0
+
+    assert detect_ai_text(HUMAN_TEXT, method="fastdetectgpt", threshold=-99999.9) == 1

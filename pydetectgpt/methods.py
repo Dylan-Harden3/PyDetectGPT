@@ -72,3 +72,36 @@ def likelihood_logrank_ratio(labels: torch.Tensor, logits: torch.Tensor) -> floa
     _log_rank = log_rank(labels, logits)
 
     return _log_likelihood / _log_rank
+
+
+def fast_detect_gpt(labels: torch.Tensor, logits: torch.Tensor) -> float:
+    """Estimate the conditional probability gap using FastDetectGPT.
+
+    Args:
+        labels (torch.Tensor): Ground truth labels of shape: (1, sequence_length).
+        logits (torch.Tensor): Logits of shape: (1, sequence_length, vocab_size).
+
+    Returns:
+        float: The estimated mean gap which serves as the detection metric.
+
+    Raises:
+        ValueError: If the shapes of `labels` and `logits` are incompatible or batch size is > 1.
+    """
+    validate_tensor_shapes(labels, logits)
+
+    # conditional sampling
+    log_probs = F.log_softmax(logits, dim=-1)
+    distribution = torch.distributions.categorical.Categorical(logits=log_probs)
+    x_tilde = distribution.sample([10000]).permute([1, 2, 0])
+
+    log_likelihood_x = log_probs.gather(dim=-1, index=labels.unsqueeze(-1)).mean(dim=1)
+    log_likelihood_x_tilde = log_probs.gather(dim=-1, index=x_tilde).mean(dim=1)
+
+    # estimate the mean/variance
+    mu_tilde = log_likelihood_x_tilde.mean(dim=-1)
+    sigma_tilde = log_likelihood_x_tilde.std(dim=-1)
+
+    # estimate conditional probability curvature
+    dhat = (log_likelihood_x - mu_tilde) / sigma_tilde
+
+    return dhat.item()
