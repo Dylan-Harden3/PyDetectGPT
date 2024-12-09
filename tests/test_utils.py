@@ -9,7 +9,7 @@ def test_log_likelihood():
     labels = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
-        ValueError, match="labels and logits must have compatible shapes"
+        ValueError, match="Labels and logits must have compatible shapes"
     ):
         log_likelihood(labels, logits)
 
@@ -17,14 +17,14 @@ def test_log_likelihood():
     logits = torch.randn(2, 5, 10)
     labels = torch.randint(0, 9, (2, 5))
 
-    with pytest.raises(ValueError, match="batch size must be 1"):
+    with pytest.raises(ValueError, match="Batch size must be 1"):
         log_likelihood(labels, logits)
 
     # label > vocab size
     logits = torch.randn(1, 3, 10)
     labels = torch.tensor([[2, 5, 10]])
 
-    with pytest.raises(ValueError, match="labels must be in vocab size"):
+    with pytest.raises(ValueError, match="Labels must be in vocab size"):
         log_likelihood(labels, logits)
 
     # some simple tests I calculated manually
@@ -45,7 +45,7 @@ def test_log_rank():
     labels = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
-        ValueError, match="labels and logits must have compatible shapes"
+        ValueError, match="Labels and logits must have compatible shapes"
     ):
         log_rank(labels, logits)
 
@@ -53,14 +53,14 @@ def test_log_rank():
     logits = torch.randn(2, 5, 10)
     labels = torch.randint(0, 9, (2, 5))
 
-    with pytest.raises(ValueError, match="batch size must be 1"):
+    with pytest.raises(ValueError, match="Batch size must be 1"):
         log_rank(labels, logits)
 
     # label > vocab size
     logits = torch.randn(1, 3, 10)
     labels = torch.tensor([[2, 5, 10]])
 
-    with pytest.raises(ValueError, match="labels must be in vocab size"):
+    with pytest.raises(ValueError, match="Labels must be in vocab size"):
         log_rank(labels, logits)
 
     # some simple tests I calculated manually
