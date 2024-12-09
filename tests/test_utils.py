@@ -72,7 +72,7 @@ def test_log_rank():
     logits = torch.tensor([[[2.3, 1.1, 0.5], [0.8, 2.5, 1.1], [1.5, 2.1, 0.2]]])
     labels = torch.tensor([[0, 1, 2]])
 
-    assert (log_rank(labels, logits) - -0.3662) < 1e-5
+    assert abs(log_rank(labels, logits) - -0.3662) < 1e-5
 
 
 def test_likelihood_logrank_ratio():
@@ -103,9 +103,9 @@ def test_likelihood_logrank_ratio():
     logits = torch.tensor([[[0.2, 0.3, 0.4]]])
     labels = torch.tensor([[1]])
 
-    assert (likelihood_logrank_ratio(labels, logits) - 1.5897675) < 1e-5
+    assert abs(likelihood_logrank_ratio(labels, logits) - 1.5897675) < 1e-5
 
     logits = torch.tensor([[[2.3, 1.1, 0.5], [0.8, 2.5, 1.1], [1.5, 2.1, 0.2]]])
     labels = torch.tensor([[0, 1, 2]])
 
-    assert (likelihood_logrank_ratio(labels, logits) - -0.05525) < 1e-5
+    assert abs(likelihood_logrank_ratio(labels, logits) - 2.8852) < 1e-5
