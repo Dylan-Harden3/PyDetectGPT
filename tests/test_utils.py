@@ -1,5 +1,7 @@
 import torch
 import pytest
+from torch import Tensor
+
 from pydetectgpt import (
     log_likelihood,
     log_rank,
@@ -8,10 +10,10 @@ from pydetectgpt import (
 )
 
 
-def test_log_likelihood():
+def test_log_likelihood() -> None:
     # shape mismatch
-    logits = torch.randn(1, 5, 10)
-    labels = torch.randint(0, 9, (1, 6))
+    logits: Tensor = torch.randn(1, 5, 10)
+    labels: Tensor = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
         ValueError, match="Labels and logits must have compatible shapes"
@@ -44,10 +46,10 @@ def test_log_likelihood():
     assert abs(log_likelihood(labels, logits) - -1.05657327) < 1e-5
 
 
-def test_log_rank():
+def test_log_rank() -> None:
     # shape mismatch
-    logits = torch.randn(1, 5, 10)
-    labels = torch.randint(0, 9, (1, 6))
+    logits: Tensor = torch.randn(1, 5, 10)
+    labels: Tensor = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
         ValueError, match="Labels and logits must have compatible shapes"
@@ -80,10 +82,10 @@ def test_log_rank():
     assert abs(log_rank(labels, logits) - -0.3662) < 1e-5
 
 
-def test_likelihood_logrank_ratio():
+def test_likelihood_logrank_ratio() -> None:
     # shape mismatch
-    logits = torch.randn(1, 5, 10)
-    labels = torch.randint(0, 9, (1, 6))
+    logits: Tensor = torch.randn(1, 5, 10)
+    labels: Tensor = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
         ValueError, match="Labels and logits must have compatible shapes"
@@ -116,10 +118,10 @@ def test_likelihood_logrank_ratio():
     assert abs(likelihood_logrank_ratio(labels, logits) - 2.8852) < 1e-5
 
 
-def test_fast_detect_gpt():
+def test_fast_detect_gpt() -> None:
     # shape mismatch
-    logits = torch.randn(1, 5, 10)
-    labels = torch.randint(0, 9, (1, 6))
+    logits: Tensor = torch.randn(1, 5, 10)
+    labels: Tensor = torch.randint(0, 9, (1, 6))
 
     with pytest.raises(
         ValueError, match="Labels and logits must have compatible shapes"

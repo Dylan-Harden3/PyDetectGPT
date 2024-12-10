@@ -17,9 +17,11 @@ def load_model(hf_repo: str) -> Tuple[AutoModelForCausalLM, AutoTokenizer]:
     Raises:
         ValueError: If there is an issue loading the model or tokenizer from HuggingFace.
     """
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    tokenizer = AutoTokenizer.from_pretrained(hf_repo)
-    model = AutoModelForCausalLM.from_pretrained(hf_repo).to(device)
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
+    tokenizer: AutoTokenizer = AutoTokenizer.from_pretrained(hf_repo)
+    model: AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(hf_repo).to(
+        device
+    )
 
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token_id = tokenizer.eos_token_id
