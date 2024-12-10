@@ -12,7 +12,7 @@ HUMAN_TEXT: str = (
 )
 
 
-def test_detect_ai_text() -> None:
+def test_detect_ai_text():
     # invalid method name
     with pytest.raises(ValueError, match="must be one of"):
         detect_ai_text(AI_TEXT, method="notvalidmethodname")
@@ -27,7 +27,7 @@ def test_detect_ai_text() -> None:
     assert detect_ai_text(HUMAN_TEXT, threshold=-99999.9) == 1
 
 
-def test_detect_ai_text_loglikelihood() -> None:
+def test_detect_ai_text_loglikelihood():
     method: DetectionMethod = "loglikelihood"
 
     assert detect_ai_text(AI_TEXT, method=method) == 1
@@ -39,7 +39,7 @@ def test_detect_ai_text_loglikelihood() -> None:
     assert detect_ai_text(HUMAN_TEXT, method=method, threshold=-99999.9) == 1
 
 
-def test_detect_ai_text_logrank() -> None:
+def test_detect_ai_text_logrank():
     method: DetectionMethod = "logrank"
 
     assert detect_ai_text(AI_TEXT, method=method) == 1
@@ -51,7 +51,7 @@ def test_detect_ai_text_logrank() -> None:
     assert detect_ai_text(HUMAN_TEXT, method=method, threshold=-99999.9) == 1
 
 
-def test_detect_ai_text_detectllm() -> None:
+def test_detect_ai_text_detectllm():
     method: DetectionMethod = "detectllm"
 
     assert detect_ai_text(AI_TEXT, method=method) == 1
@@ -63,7 +63,7 @@ def test_detect_ai_text_detectllm() -> None:
     assert detect_ai_text(HUMAN_TEXT, method=method, threshold=-99999.9) == 1
 
 
-def test_detect_ai_text_fastdetectgpt() -> None:
+def test_detect_ai_text_fastdetectgpt():
     method: DetectionMethod = "fastdetectgpt"
 
     assert detect_ai_text(AI_TEXT, method=method) == 1

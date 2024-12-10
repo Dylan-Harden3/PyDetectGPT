@@ -10,7 +10,7 @@ from pydetectgpt import (
 )
 
 
-def test_log_likelihood() -> None:
+def test_log_likelihood():
     # shape mismatch
     logits: Tensor = torch.randn(1, 5, 10)
     labels: Tensor = torch.randint(0, 9, (1, 6))
@@ -46,7 +46,7 @@ def test_log_likelihood() -> None:
     assert abs(log_likelihood(labels, logits) - -1.05657327) < 1e-5
 
 
-def test_log_rank() -> None:
+def test_log_rank():
     # shape mismatch
     logits: Tensor = torch.randn(1, 5, 10)
     labels: Tensor = torch.randint(0, 9, (1, 6))
@@ -82,7 +82,7 @@ def test_log_rank() -> None:
     assert abs(log_rank(labels, logits) - -0.3662) < 1e-5
 
 
-def test_likelihood_logrank_ratio() -> None:
+def test_likelihood_logrank_ratio():
     # shape mismatch
     logits: Tensor = torch.randn(1, 5, 10)
     labels: Tensor = torch.randint(0, 9, (1, 6))
@@ -118,7 +118,7 @@ def test_likelihood_logrank_ratio() -> None:
     assert abs(likelihood_logrank_ratio(labels, logits) - 2.8852) < 1e-5
 
 
-def test_fast_detect_gpt() -> None:
+def test_fast_detect_gpt():
     # shape mismatch
     logits: Tensor = torch.randn(1, 5, 10)
     labels: Tensor = torch.randint(0, 9, (1, 6))
