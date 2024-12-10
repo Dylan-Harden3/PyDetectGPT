@@ -13,22 +13,22 @@ HUMAN_TEXT: str = (
 def test_cli_loglikelihood(capsys) -> None:
     method: str = "loglikelihood"
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method, '-t', '99999.9']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method, "-t", "99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method, '-t', '-99999.9']):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method, "-t", "-99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
@@ -37,22 +37,22 @@ def test_cli_loglikelihood(capsys) -> None:
 def test_cli_logrank(capsys) -> None:
     method: str = "logrank"
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method, '-t', '99999.9']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method, "-t", "99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method, '-t', '-99999.9']):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method, "-t", "-99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
@@ -62,22 +62,22 @@ def test_cli_detectllm(capsys) -> None:
     """Test CLI with detectllm method."""
     method: str = "detectllm"
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method, '-t', '99999.9']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method, "-t", "99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method, '-t', '-99999.9']):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method, "-t", "-99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
@@ -86,40 +86,40 @@ def test_cli_detectllm(capsys) -> None:
 def test_cli_fastdetectgpt(capsys) -> None:
     method: str = "fastdetectgpt"
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method]):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', method, '-t', '99999.9']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", method, "-t", "99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "Human Written" in captured.out
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-m', method, '-t', '-99999.9']):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-m", method, "-t", "-99999.9"]):
         main()
         captured = capsys.readouterr()
         assert "AI Generated" in captured.out
 
 
 def test_cli_invalid_method() -> None:
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-m', 'invalid_method']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-m", "invalid_method"]):
         with pytest.raises(SystemExit):
             main()
 
 
 def test_cli_quiet_mode(capsys) -> None:
-    with patch('sys.argv', ['pydetectgpt', AI_TEXT, '-q']):
+    with patch("sys.argv", ["pydetectgpt", AI_TEXT, "-q"]):
         main()
         captured = capsys.readouterr()
         assert captured.out.strip() == "1"
 
-    with patch('sys.argv', ['pydetectgpt', HUMAN_TEXT, '-q']):
+    with patch("sys.argv", ["pydetectgpt", HUMAN_TEXT, "-q"]):
         main()
         captured = capsys.readouterr()
         assert captured.out.strip() == "0"
