@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydetectgpt"
+version = "0.1.0"
+description = "LLM-Generated text detection in PyTorch"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["ai", "detection", "llm", "pytorch"]
+authors = [
+    {name = "Dylan Harden", email = "dylanharden33@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "torch",
+    "numpy",
+    "transformers",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "pydocstyle",
+    "pytest",
+    "pytest-cov",
+]
+
+[project.scripts]
+pydetectgpt = "pydetectgpt.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Dylan-Harden3/PyDetectGPT"
+Repository = "https://github.com/Dylan-Harden3/PyDetectGPT"
