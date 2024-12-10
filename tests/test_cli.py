@@ -1,4 +1,3 @@
-from typing import List
 import pytest
 from unittest.mock import patch
 from pydetectgpt.cli import main
