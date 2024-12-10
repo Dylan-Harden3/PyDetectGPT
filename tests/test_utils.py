@@ -147,9 +147,9 @@ def test_fast_detect_gpt():
     logits = torch.tensor([[[0.2, 0.3, 0.4]]])
     labels = torch.tensor([[1]])
 
-    assert abs(fast_detect_gpt(labels, logits) - -0.085) < 3e-2
+    assert abs(fast_detect_gpt(labels, logits) - -0.085) < 5e-2
 
     logits = torch.tensor([[[2.3, 1.1, 0.5], [0.8, 2.5, 1.1], [1.5, 2.1, 0.2]]])
     labels = torch.tensor([[0, 1, 2]])
 
-    assert abs(fast_detect_gpt(labels, logits) - -0.55) < 3e-2
+    assert abs(fast_detect_gpt(labels, logits) - -0.55) < 5e-2

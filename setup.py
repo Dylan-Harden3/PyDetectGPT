@@ -10,4 +10,5 @@ setup(
     extras_require={
         "dev": ["black", "ruff", "pydocstyle", "pytest", "pytest-cov"],
     },
+    entry_points={"console_scripts": ["pydetectgpt=pydetectgpt.cli:main"]},
 )
