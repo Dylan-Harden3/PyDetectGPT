@@ -25,7 +25,7 @@ DetectionMethod = Literal["loglikelihood", "logrank", "detectllm", "fastdetectgp
 def detect_ai_text(
     text: str,
     method: DetectionMethod = "fastdetectgpt",
-    threshold: float | None = None,
+    threshold: float = None,
     detection_model: str = "Qwen/Qwen2.5-1.5B",
 ) -> int:
     """Detect if `text` is written by human or ai.
