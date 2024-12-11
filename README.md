@@ -1,8 +1,8 @@
 # PyDetectGPT
-
-LLM-Generated text detection in Pytorch.
+Python package for AI-generated text detection. Provides a high level api for easy adoption and more granular customization for advanced use cases.
 
 ## Quick Start
+Implement an AI Plagarism detector in 4 lines of Python:
 ```python
 from pydetectgpt import detect_ai_text
 
@@ -11,9 +11,29 @@ result = detect_ai_text(text)
 print("AI Generated" if result else "Human Written")
 ```
 
+On the first run it may some time to load the model from [Hugging Face](https://huggingface.co/). After that it will be *relatively* fast.
+
+## Usage
+You can also chose different [Detection Methods](#methods), decision thresholds and use any [transformers](https://huggingface.co/docs/transformers/en/index) model for the logits:
+```python
+from pydetectgpt import detect_ai_text
+
+text = "text you want to check here"
+result = detect_ai_text(text, method="fastdetectgpt", threshold=1.9, model="Qwen/Qwen2.5-1.5B")
+print("AI Generated" if result else "Human Written")
+```
+The default thresholds are:
+```
+"loglikelihood": -1.8,
+"logrank": -0.8,
+"detectllm": 2.14,
+"fastdetectgpt": 1.9,
+```
+These were selected to minimize false positives (minimize saying its AI text when its not).
+
 ## CLI
 
-There is also a CLI wrapper.
+There is also a CLI wrapper:
 ```bash
 pydetectgpt "Your text here"
 ```
@@ -28,7 +48,7 @@ pydetectgpt "Your text here" -q
 
 For a full list of args see [cli.py](pydetectgpt/cli.py)
 
-## Detection Methods
+## Methods
 
 PyDetectGPT supports four detection methods, in order of effectiveness:
 
