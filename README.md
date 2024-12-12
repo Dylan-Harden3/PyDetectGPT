@@ -1,4 +1,10 @@
 # PyDetectGPT
+![PyPI](https://img.shields.io/pypi/v/pydetectgpt?color=blue)
+[![Downloads](https://static.pepy.tech/badge/pydetectgpt)](https://pepy.tech/project/pydetectgpt)
+![License](https://img.shields.io/github/license/Dylan-Harden3/pydetectgpt?style=flat-square)
+![CI](https://github.com/Dylan-Harden3/pydetectgpt/actions/workflows/ci.yml/badge.svg)
+
+
 Python package for AI-generated text detection. Provides a high level api for easy adoption and more granular customization for advanced use cases.
 
 ## Quick Start
