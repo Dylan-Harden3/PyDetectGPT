@@ -1,6 +1,6 @@
 # PyDetectGPT
 ![PyPI](https://img.shields.io/pypi/v/pydetectgpt?color=blue)
-[![Downloads](https://static.pepy.tech/badge/pydetectgpt)](https://pepy.tech/project/pydetectgpt)
+![Downloads](https://img.shields.io/pypi/dm/pydetectgpt?color=blue)
 ![License](https://img.shields.io/github/license/Dylan-Harden3/pydetectgpt?style=flat-square)
 ![CI](https://github.com/Dylan-Harden3/pydetectgpt/actions/workflows/ci.yml/badge.svg)
 
